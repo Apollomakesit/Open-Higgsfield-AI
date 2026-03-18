@@ -2,15 +2,67 @@
   "name": "open-higgsfield-ai",
   "description": "Open-source alternative to Higgsfield AI — AI image generation and cinema studio with 20+ models",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron:dev": "vite build && electron .",
+    "electron:build": "vite build && electron-builder --mac",
+    "electron:build:dmg": "vite build && electron-builder --mac dmg",
+    "electron:build:win": "vite build && electron-builder --win"
+  },
+  "build": {
+    "appId": "ai.higgsfield.open",
+    "productName": "Open Higgsfield AI",
+    "copyright": "Copyright © 2025",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "icon": "public/banner.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Open Higgsfield AI",
+      "backgroundColor": "#0d0d0d",
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    },
+    "win": {
+      "icon": "public/banner.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "deleteAppDataOnUninstall": false
+    }
   },
   "devDependencies": {
     "autoprefixer": "^10.4.24",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "vite": "^5.4.0"
