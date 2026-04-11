@@ -56,9 +56,11 @@ The app will install silently to `%LocalAppData%` with a Start Menu shortcut.
 
 Open Higgsfield AI is an open-source AI image, video, cinema, and lip sync studio that brings Higgsfield-style creative workflows to everyone. Powered by [Muapi.ai](https://muapi.ai), it supports text-to-image, image-to-image, text-to-video, image-to-video, and audio-driven lip sync generation across models like Flux, Nano Banana, Midjourney, Kling, Sora, Veo, Seedream, Infinite Talk, LTX Lipsync, Wan 2.2, and more — all from a sleek, modern interface you can self-host and customize.
 
+Self-hosting this repository changes where the UI runs. It does not replace Muapi as the current generation backend or pricing layer.
+
 **Why Open Higgsfield AI instead of Higgsfield AI?**
 - **Free & open-source** — no subscription, no vendor lock-in
-- **Self-hosted** — your data stays on your machine
+- **Self-hosted UI** — control the app host and source code while the current app still sends generations through Muapi
 - **200+ models** — text-to-image, image-to-image, text-to-video, image-to-video, lip sync
 - **Multi-image input** — feed up to 14 reference images into compatible models
 - **Lip Sync Studio** — animate portraits or sync lips to any audio with 9 dedicated models
@@ -79,7 +81,7 @@ For a deep dive into the technical architecture and the philosophy behind the "I
 - **Smart Controls** — Dynamic aspect ratio, resolution/quality, and duration pickers that adapt to each model's capabilities (including t2i models with resolution or quality options)
 - **Generation History** — Browse, revisit, and download all past generations (persisted in browser storage)
 - **Image & Video Download** — One-click download of generated outputs in full resolution
-- **API Key Management** — Secure API key storage in browser localStorage (never sent to any server except Muapi)
+- **API Key Management** — API keys stay in browser localStorage in the current app and are sent directly to Muapi for generation, uploads, and balance checks
 - **Responsive Design** — Works seamlessly on desktop and mobile with dark glassmorphism UI
 
 ### 🖼️ Image Studio — Dual Mode
@@ -322,15 +324,17 @@ Higgsfield AI is a proprietary AI video and image generation platform. **Open Hi
 
 | | Higgsfield AI | Open Higgsfield AI |
 | :--- | :--- | :--- |
-| **Cost** | Subscription-based | Free (open-source) |
+| **Cost** | Subscription-based | Open-source UI; generation uses Muapi balance |
 | **Models** | Proprietary | 200+ open & commercial models |
 | **Multi-image input** | Limited | Up to 14 images per request |
 | **Lip sync** | No | 9 models, image & video modes |
-| **Hosted version** | Subscription | Free at [muapi.ai/open-higgsfield-ai](https://muapi.ai/open-higgsfield-ai) |
+| **Hosted version** | Subscription | Free app UI at [muapi.ai/open-higgsfield-ai](https://muapi.ai/open-higgsfield-ai); generation still uses Muapi balance |
 | **Self-hosting** | No | Yes |
 | **Customizable** | No | Fully hackable |
-| **Data privacy** | Cloud-based | Your data stays local |
+| **Data privacy** | Cloud-based | API key stays in your browser; prompts, uploads, and outputs still flow through Muapi |
 | **Source code** | Closed | MIT licensed |
+
+If you self-host the current codebase on Railway or another host, you keep control of the app host and source code, but model requests still go through Muapi unless you build a separate direct-provider backend.
 
 ## 📄 License
 
